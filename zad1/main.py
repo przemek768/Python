@@ -50,8 +50,9 @@ print(song_text.count("ay"))
 leng_firstname=len(firstname)
 print(firstname[0]+firstname[leng_firstname-1])
 #zad8
-j='Pat ryk Le wan dow ski'
-print(j.split())
+j='Na na na la la La la na na'
+j_podziel=j.split()
+print(j_podziel)
 #zad9
 qq=float(38.3)
 ww=str(5)
