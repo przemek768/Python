@@ -1,0 +1,2 @@
+napis='XDDDDDDDD'
+print(napis)
