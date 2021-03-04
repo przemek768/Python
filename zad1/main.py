@@ -1,21 +1,24 @@
+#zad1
 a=5
 b=3.8
 c='cos'
-print(a,b,c)
-
+aa=6
+bb=6.8
+cc='cod'
+print(a,b,c,aa,bb,cc)
+#zad2
 q=5
 w=4
 e=6
 t=2
-
-sum=q+w-e ** t
+tt=8
+sum=q+w-e ** t/tt
 print(sum)
-
+#zad3
 reszta=10%3
 print(reszta)
-
 dzielenie_i_inne=(10.8/2)+3.25**4-3*2
-print(dzielenie_i_inne)
+print(dzielenie_i_inne,)
 
 
 napis='adam'+' '+'swiecie'
@@ -30,18 +33,28 @@ all=tab1+tab2
 print(all)
 
 
-
+#zad5
 firstname='PATRYK'
 lastname='LEWANDOWSKI'
 print(firstname.capitalize()+' '+lastname.capitalize())
-
+#zad6
 song_text='Over, shawty pop a molly for her soul ya Mm, I never want her body sober Up all night til its over ay, ay, ay'
 print(song_text.count("ay"))
-
+#zad7
 leng_firstname=len(firstname)
 print(firstname[0]+firstname[leng_firstname-1])
+#zad8
+j='Pat ryk Le wan dow ski'
+print(j.split())
+#zad9
+qq=float(38.3)
+ww=str(5)
+ee=hex(8)
+print(qq,ww,ee)
 
-j=firstname.split()
+
+
+
 
 
 
