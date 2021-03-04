@@ -32,6 +32,12 @@ tab2=[6,7,8,9,10]
 all=tab1+tab2
 print(all)
 
+#zad4
+
+e=e**10
+import math
+
+print(e)
 
 #zad5
 firstname='PATRYK'
