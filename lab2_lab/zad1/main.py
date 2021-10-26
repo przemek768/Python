@@ -11,19 +11,19 @@ class LinkedList:
 
     def push(self, value: Any) -> None:
         if self.head == None:
-            node = Node(value)
-            self.head = node
-            self.tail = node
+            n = Node(value)
+            self.head = n
+            self.tail = n
         else:
-            node = Node(value)
-            node.next = self.head
-            self.head = node
+            n = Node(value)
+            n.next = self.head
+            self.head = n
 
     def append(self, value: Any) -> None:
         if self.head != None:
-            node = self.tail
-            node.next = Node(value)
-            self.tail = node.next
+            n = self.tail
+            n.next = Node(value)
+            self.tail = n.next
         else:
             self.push(value)
 
@@ -35,12 +35,12 @@ class LinkedList:
         if at > len(self)-1:
             return False
         if at == len(self)-1:
-            node = self.tail
+            n = self.tail
         if len(self) > at:
-            node = self.head
+            n = self.head
             for x in range(at):
-                node = node.next
-        return node
+                n = n.next
+        return n
 
     def insert(self, value: Any, after: Node) -> None:
         if after == self.tail:
@@ -48,70 +48,70 @@ class LinkedList:
             return
         if after == None:
             return False
-        node = Node(value)
-        node.next = after.next
-        after.next = node
+        n = Node(value)
+        n.next = after.next
+        after.next = n
 
     def pop(self) -> Any:
         if self.head != None:
-            node = self.head
-            self.head = node.next
-            return node.value
+            n = self.head
+            self.head = n.next
+            return n.value
         else:
             return False
 
     def remove_last(self) -> Any:
-        node = self.head
+        n = self.head
         if self.head == None:
             return False
         if len(self) == 1:
-            deleted = self.head
+            delete = self.head
             self.head = None
-            return deleted.value
+            return delete.value
         if len(self) == 2:
-            deleted = self.tail
+            delete = self.tail
             self.tail = self.head
             self.head.next = None
-            return deleted.value
+            return delete.value
         if len(self) > 2:
-            node = self.node(len(self)-3)
-            self.tail = node
-            node = node.next
-            deleted = node.next
-            node.next = None
-            return deleted.value
+            n = self.node(len(self)-3)
+            self.tail = n
+            n = n.next
+            delete = n.next
+            n.next = None
+            return delete.value
 
     def remove(self, after: Node) -> Any:
-        node = self.head
+        n = self.head
         if len(self) == 1:
            return False
         if after.next == self.tail:
-            deleted = self.tail
+            delete = self.tail
             self.remove_last()
         else:
-            while node.next != after:
-                node=node.next
-            deleted = node.next
-            node.next = after.next
-        return deleted.value
+            while n.next != after:
+                n=n.next
+            delete = n.next
+            n.next = after.next
+        return delete.value
 
     def __len__(self):
-        node = self.head
+        n = self.head
         count = 0
-        while node != None:
+        while n != None:
             count += 1
-            node = node.next
+            n = n.next
         return count
 
     def __str__(self):
         display = ""
-        node = self.head
+        n = self.head
         for x in range(len(self)):
-            if node.next != None:
-                display+=str(node.value)+"->"
-            if node.next == None:
-                display+=str(node.value)
-            node = node.next
+            if n.next != None:
+                display+=str(n.value)+"->"
+            if n.next == None:
+                display+=str(n.value)
+            n = n.next
         return display
 
 #zad1
@@ -166,30 +166,30 @@ print(len(stack))
 
 class Queue:
     def __init__(self):
-        self._storage = LinkedList()
+        self.storage = LinkedList()
 
     def peek(self) -> Any:
-        if len(self._storage) != 0:
-            return self._storage.tail.value
+        if len(self.storage) != 0:
+            return self.storage.tail.value
         else:
             return False
 
     def enqueue(self, element: Any) -> None:
-        self._storage.push(element)
+        self.storage.push(element)
 
     def dequeue(self) -> Any:
-        if len(self._storage) != 0:
-            return self._storage.remove_last()
+        if len(self.storage) != 0:
+            return self.storage.remove_last()
         else:
             return False
 
     def __len__(self):
-        return len(self._storage)
+        return len(self.storage)
 
     def __str__(self):
         display = ""
-        for x in range(len(self._storage)):
-            display += str(self._storage.node(x).value)+" "
+        for x in range(len(self.storage)):
+            display += str(self.storage.node(x).value)+" "
         return display
 
 #zad3
