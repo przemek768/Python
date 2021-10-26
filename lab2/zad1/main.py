@@ -1,90 +1,119 @@
 from typing import Any
-import int
-class  Node:
-    def __init__(self, value: Any):
+
+
+
+
+class Node:
+    def __init__(self, value:Any):
         self.value = value
         self.next = None
 
 class LinkedList:
     def __init__(self):
         self.head = None
-
-    def show_list(self):
-        if self.head is None:
-            print("Lista jest pusta")
-            return
-        else:
-            n = self.head
-            while n is not None:
-                print(n.value, " ")
-                n = n.next
-    
-    def push_at_first(self, value: Any):
-        new_node = Node(value)
-        new_node.next = self.head
-        self.head = new_node
-
-    def append_at_end(self, value: Any):
-        new_node = Node(value)
-        if self.head is None:
-            self.head = new_node
-        else:
-            n = self.head
-            while n.next is not None:
-                n = n.next
-            n.next = new_node
-    def insert(self, value: Any, after: None):
-        n = self.head
-        while n is not None:
-            if after==n.value:
-                break
-            n = n.next
-        if n is None:
-            print("Brak w liscie")
-        else:
-            new_node = Node(value)
-            new_node.next = n.next
-            n.next = new_node
-    def pop(self):
+        self.tail = None
+    def __len__(self):
         node = self.head
-        self.head = node.next
-        return node
-    def remove_last(self):
-        if self.head is None:
-            print("Pusto")
-        elif self.head is None:
-            self.head = None
-        else:
-            n = self.head
-            while n.next.next is not None:
-                n = n.next
-            n.next = None
-    def remove(self, after: None):
-        if after is not None:
-            if after.next == None:
-                return
-        if after is None:
-            return
-        n = self.head
-        while node is not after:
-            n = n.next
-        n = n.next
-        after.next = n.next
+        count = 0
+        while node != None:
+            count += 1
+            node = node.next
+        return count
 
-    def length(self):
-        n = self.head
-        ct = 0
-        while n is not None:
-            ct += 1
-            n = n.next
-        return ct
+    def __str__(self):
+        strng = ""
+        node = self.head
+        for x in range(len(self)):
+            if node.next != None:
+                strng+=str(node.value)+" -> "
+            if node.next == None:
+                strng+=str(node.value)
+            node = node.next
+        return strng
+
+    def push(self, value: Any):
+        if self.head == None:
+            node = Node(value)
+            self.head = node
+            self.tail = node
+        else:
+            node = Node(value)
+            node.next = self.head
+            self.head = node
+
+    def append(self, value: Any):
+        if self.head != None:
+            node = self.tail
+            node.next = Node(value)
+            self.tail = node.next
+        else:
+            self.push(value)
 
     def node(self, at: int):
-        if self.length() >= at:
-            n = self.head
+        if len(self) == 0:
+            raise ValueError("pusto")
+        if at == len(self)-1:
+            node = self.tail
+        if len(self) > at:
+            node = self.head
             for x in range(at):
-                n = n.next
-            return n
+                node = node.next
+        return node
+
+    def insert(self, value: Any, after: Node):
+
+        if after == self.tail:
+            self.append(value)
+            return
+        if after == None:
+            return
+        node = Node(value)
+        node.next = after.next
+        after.next = node
+
+    def pop(self):
+        if self.head != None:
+            node = self.head
+            self.head = node.next
+            return node
+        else:
+            return False
+
+    def remove_last(self):
+        node = self.head
+        if self.head == None:
+            raise ValueError("pusto")
+        if len(self) == 1:
+            deleted = self.head
+            self.head = None
+            return deleted
+        if len(self) == 2:
+            deleted = self.tail
+            self.tail = self.head
+            self.head.next = None
+            return deleted
+        if len(self) > 2:
+            node = self.node(len(self)-3)
+            self.tail = node
+            node = node.next
+            deleted = node.next
+            node.next = None
+            return deleted
+
+    def remove(self, after: Node):
+        node = self.head
+        if len(self) == 1:
+           raise ValueError("jest tylko 1 element")
+        if after.next == self.tail:
+            deleted = self.tail
+            self.remove_last()
+        else:
+            while node.next != after:
+                node=node.next
+            deleted = node.next
+            node.next = after.next
+
+        return deleted
 
 lista = LinkedList()
 node=Node(2)
