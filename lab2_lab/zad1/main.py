@@ -62,24 +62,12 @@ class LinkedList:
 
     def remove_last(self) -> Any:
         n = self.head
-        if self.head == None:
-            return False
-        if len(self) == 1:
-            delete = self.head
-            self.head = None
-            return delete.value
-        if len(self) == 2:
-            delete = self.tail
-            self.tail = self.head
-            self.head.next = None
-            return delete.value
-        if len(self) > 2:
-            n = self.node(len(self)-3)
-            self.tail = n
-            n = n.next
-            delete = n.next
-            n.next = None
-            return delete.value
+        n = self.node(len(self)-3)
+        self.tail = n
+        n = n.next
+        delete = n.next
+        n.next = None
+        return delete.value
 
     def remove(self, after: Node) -> Any:
         n = self.head
@@ -120,6 +108,7 @@ lista = LinkedList()
 lista.push(5)
 lista.push(6)
 lista.push(7)
+lista.push(11)
 lista.push(8)
 lista.append(9)
 print(lista.node(2))
